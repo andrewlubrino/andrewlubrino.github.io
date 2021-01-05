@@ -3,10 +3,10 @@
   position: relative;
   width: 300px;
   height: 275px;
-  overflow: auto;
+  overflow: hidden;
 }
 .project-text {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 100%;
   background-color: white;
