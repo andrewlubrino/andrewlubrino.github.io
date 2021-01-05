@@ -16,7 +16,7 @@
   overflow: hidden;
   opacity: 0.85;
 }
-footer {
+section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,5 +88,13 @@ p {
 @media screen and (min-width: 400px) {
   body {
     background-color: #f5f5f5;
+}
+footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  text-align: center;
+  margin-top: 50px;
 }
 </style>
