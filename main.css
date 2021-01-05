@@ -1,3 +1,4 @@
+<style>
 .project-tile {
   display: flex;
   justify-content: center;
@@ -88,3 +89,4 @@ p {
   body {
     background-color: #f5f5f5;
   }
+</style>
