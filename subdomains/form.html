@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+  <style>
+    h1 {
+      text-align: center;
+      font-family: Source Serif Pro;
+      font-size: 22.5px;
+    }
+    h2 {
+      text-align: left;
+      font-family: Source Serif Pro;
+      font-size: 16px;
+    }
+    p {
+      text-align: center;
+      font-style: italic;
+    }
+    body{
+      max-width: 400px;
+      margin: auto;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin: 10px 0;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+      border: 0;
+    }
+    .input-style{
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+      border: 0;
+      width: 100%;
+      font-family: Source Serif Pro;
+    }
+    #label{
+      font-family: Source Serif Pro;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Want to help me improve my personal page? Leave some feedback below!</h1>
+  <p id="description">Thanks for visiting. I appreciate any and all feedback and will
+  do my best to incorporate all suggestions.</p>
+  <form id="survey-form">
+
+    <label for="name" id="name-label">Name</label>
+    <input type="text" id="name" placeholder="Enter Name" class="input-style" required/>
+
+    <label for="email" id="email-label">Email</label>
+    <input type="email" action="https://www.freecodecamp.com/email-submit" id="email" placeholder="Enter Email Address" class="input-style" class="input-style" required/>
+
+    <label for="number" id="number-label">Please rate my site:</label>
+    <input type="number" id="number" min="0" max="10" placeholder="Enter a rating between 0 and 10" class="input-style"/>
+
+    <label for="dropdown">What made you come to my personal site?</label>
+    <select id="dropdown" class="input-style">
+      <option value="employer">I'm a prospective employer</option>
+      <option value="friend">I'm an old friend</option>
+      <option value="aquaintance">I'm an aquaintance</option>
+      <option value="chance">I stumbled in here by chance</option>
+    </select>
+
+    <h2>If you are (or if, hypothetically, you were) a prospective employer, would
+    you hire me based on this site?</h2>
+
+    <label for="Yes">
+      <input type="radio" id="Yes" name="hire-or-fire" value="hire"> Yeah! Welcome aboard!
+    </label>
+
+    <label for="No">
+      <input type="radio" id="No" name="hire-or-fire" value="fire"> Nope, sorry bud
+    </label>
+
+    <h2>What parts of my site do you think need the most help?</h2>
+
+    <label for="Content">
+    <input type="checkbox" name="improvement" id="Content" value="content">Content
+    </label>
+
+    <label for="Style">
+    <input type="checkbox" name="improvement" id="Style" value="style">CSS Styling
+    </label>
+
+    <label for="Style">
+    <input type="checkbox" name="improvement" id="Style" value="style">Code Readability
+    </label>
+
+    <label for="Everything">
+    <input type="checkbox" name="improvement" id="Everything" value="everything">Just... everything, man
+    </label>
+
+    <br>
+
+    <label for="textarea-1"><strong>Be more specific please!</strong></label>
+    <textarea id="textarea-1" placeholder="Tell me how you really feel..."></textarea>
+
+    <input type="submit" id="submit" class="input-style">
+  </form>
+</body>
+</html>
