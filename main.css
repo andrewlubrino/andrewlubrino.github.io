@@ -1,12 +1,11 @@
 <style>
 .project-tile {
-  position: relative;
   width: 300px;
   height: 275px;
   overflow: hidden;
 }
 .project-text {
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   width: 100%;
   background-color: white;
