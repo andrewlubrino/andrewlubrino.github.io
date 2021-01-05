@@ -16,14 +16,6 @@
   overflow: hidden;
   opacity: 0.85;
 }
-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: space-between;
-  text-align: center;
-  margin-top: 50px;
-}
 nav {
   background-color: #333;
   display: flex;
