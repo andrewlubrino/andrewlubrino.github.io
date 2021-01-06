@@ -3,6 +3,10 @@
   width: 300px;
   height: 275px;
   overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .project-text {
   position: absolute;
@@ -33,19 +37,6 @@ nav {
 }
 .active {
   background-color: green;
-}
-#projects{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  position: relative;
-  width: 300px;
-  height: 275px;
-  overflow: hidden;
-  margin-left: 200px;
-  margin-right: 200px;
-  margin-bottom: 100px;
-  overflow: hidden;
 }
 #welcome-section {
   display: flex;
