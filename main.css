@@ -14,6 +14,7 @@
   background-color: white;
   color: black;
   opacity: 0.85;
+  text-align: center;
 }
 #projects {
   display: flex;
