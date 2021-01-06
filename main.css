@@ -5,6 +5,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .project-text {
   position: absolute;
