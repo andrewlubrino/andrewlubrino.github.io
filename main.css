@@ -1,11 +1,10 @@
 .project-tile {
+  display: flex;
+  justify-content: center;
+  position: relative;
   width: 300px;
   height: 275px;
   overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .project-text {
   position: absolute;
@@ -13,13 +12,14 @@
   width: 100%;
   background-color: white;
   color: black;
+  overflow: hidden;
   opacity: 0.85;
   text-align: center;
 }
 #projects {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 nav {
   background-color: #333;
