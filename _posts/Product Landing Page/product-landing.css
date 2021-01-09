@@ -190,7 +190,7 @@ footer {
   position: absolute;
   left: 30px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {}
   body {
     background-color: olive;
   }
