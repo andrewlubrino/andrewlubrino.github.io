@@ -16,7 +16,7 @@
   opacity: 0.85;
   text-align: center;
 }
-#projects {
+.projects {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
