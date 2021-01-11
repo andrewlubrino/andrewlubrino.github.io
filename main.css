@@ -25,6 +25,11 @@
   margin-bottom: 100px;
   overflow: hidden;
 }
+#projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 nav {
   background-color: #333;
   display: flex;
