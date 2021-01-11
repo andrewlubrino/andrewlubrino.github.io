@@ -80,6 +80,10 @@ nav {
   max-height: 100%;
   width: auto;
 }
+#trombone {
+  max-width: 100%;
+  height: auto;
+}
 p {
   font-family: Source Serif Pro;
 }
