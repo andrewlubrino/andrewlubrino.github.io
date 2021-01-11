@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Technical Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav id="navbar">
+    <header>
+      <h1>The pre-requisites to the linked list</h1>
+    </header>
+    <div id="links">
+      <a href="#Introduction" id="Introduction" class="nav-link">Introduction</a>
+      <a href="#Pointers" id="Pointers" class="nav-link">Pointers</a>
+      <a href="#Why_pointers_are_useful" id="Why_pointers_are_useful" class="nav-link">Why pointers are useful</a>
+      <a href="#A_detour_through_classes" id="A_detour_through_classes" class="nav-link">A detour through classes</a>
+      <a href="#Recursion" id="Recursion" class="nav-link">Recursion</a>
+      <a href="#Next_steps" id="Next_steps" class="nav-link">Next steps</a>
+    </div>
+
+  </nav>
+  <main id="main-doc">
+    <section id="Introduction" class="main-section">
+      <header>
+        <h2>Introduction</h2>
+      </header>
+        <p>Most introductory programming tutorials start with the classic 'Hello, world!' program.
+        This introduces the learner to the very basic syntax of the language they're learning. The
+        then most likely moves on to variable assignment, functions, and other basic topics that
+        require no conceptual understanding. Introducing programming this way can be incredibly
+        boring and usually leaves the reader asking the question, "What can I do with this?".</p>
+
+        <p>This article should serve as an intermediary between basic C++ syntax tutorials and meaningfully
+        challenging problem sets. At the end of this article, the reader will be presented with a problem
+        set and just enough information to move forward on their own. This is, in my opinion, the best way
+        to learn the complex ideas that comprise computer science.</p>
+
+        <p>There are, of course, pre requisites to this tutorial:
+          <ul>
+            <li>a computer</li>
+            <li>a text editor or IDE</li>
+            <li>a way to compile and execute C++ code</li>
+            <li>some basic knowledge of C++ syntax</li>
+            <li>basic knowledge of classes (and how to build them)</li>
+          </ul>
+        This tutorial assumes the reader already has all of these things and won't spend any time
+        going through how to configure these items.</p>
+    </section>
+    <section id="Pointers" class="main-section">
+
+      <header>
+        <h2>Pointers</h2>
+      </header>
+
+      <p>When we declare a variable in C++, like in <code>int x;</code>, we are asking the computer
+      to reserve a space in memory large enough to hold an integer and to allow the program to only
+      write integer values to that piece of memory. We can access the stored piece of
+      data with the variable name that we've assigned the data to. Though the programmer only knows
+      the name that they've assigned to the piece of memory, the computer has an exact, unique
+      address for the piece of data in the form of a hexadecimal number that looks like
+      this: <code>0x9FFF0</code>.</p>
+
+      <p>Every single piece of memory has an address like this, and there's even a way that we can
+      see that address in C++. Run the following code in your environment:</p>
+
+      <div class="codes"><pre><code>
+        int main(){
+          int x = 0;
+          cout << &x << endl;
+          return 0;
+        }
+      </code></pre></div>
+
+      <p>Did you get a weird looking hexadecimal number that includes digits and letters? A variable
+      name with a prefixed ampersand refers to the address of the memory that holds the data.
+      It's good to know there is a way to access the address of a piece of memory, but what  if
+      we want to manipulate the address of our data in the same way that we can access our data?
+      </p>
+
+      <p>A pointer is a data type just like <code>int</code> or <code>char</code>, except it holds
+      hexadecimal memory addresses instead of integers or characters. Let's extend our previous
+      example just a little bit. Run the following code in you environment:
+      <div class="codes"><pre><code>
+        using namespace std;
+        include<iostream>;
+        int main(){
+          int x = 0;
+          cout << &x << endl;
+          int * p = &x;
+          cout << p << endl;
+          return 0;
+        }
+      </code></pre></div>
+      <p>Let's break down what happened here. To declare a pointer, we must put a <code>*</code>
+      between the data type declaration and the variable name (note: this <code>*</code> can be
+      placed anywhere in between the data type declaration and the variable name, so long as
+      there is a space somewhere in there as well). This, of course, means that we can only
+      store the memory address of the data type that the memory address is declared for, which
+      is, in this case, <code>int</code>. After declaring the int and setting the variable name
+      to <code>p</code>, we assigned a value of <code>&x</code> to <code>p</code>. When we run
+      the code, we should get a print out of the same hexadecimal memory address twice.
+      </p>
+    </section>
+    <section class="main-section" id="Why_pointers_are_useful">
+      <header>
+        <h2>Why pointers are useful</h2>
+      </header>
+      <p>The reason that pointers are useful is not readily apparent. In <code>main</code>,
+      pointers really aren't all that useful, but passed to a function, pointers become
+      incredibly flexible and valuable. Let's work through another example to understand
+      why this is.</p>
+      <div class="codes"><pre><code>
+        void func (int x) {
+          x=10;
+        }
+
+        int main(){
+          int x;
+          x=0;
+          func(x);
+          cout << x << endl;
+          return 0;
+        }
+      </code></pre></div>
+      <p>When you run this code in your environment, the program should output a value of 0.
+      This makes sense. When <code>x</code> is given as input to <code>func</code>, the program
+      sends a copy of the data and when x is reassigned in <code>func</code>, only that local
+      copy is changed. Our version of <code>x</code> in <code>main</code> is untouched by our
+      function.</p>
+
+      <p>Let's change this code a little bit by sending a pointer to <code>func</code>.</p>
+
+      <div class="codes"><pre><code>
+        void func (int * x) {
+          cout << x << endl;
+          *x=10;
+        }
+
+        int main(){
+          int x;
+          x=0;
+          func(&x);
+          cout << x << endl;
+          return 0;
+        }
+      </code></pre></div>
+
+      <p>Your first output should be a hexadecimal address from <code>func</code>. Your second
+      output should be 10. This is finally starting to get interesting. Since we passed the
+      exact memory address of the variable we were trying to access, we were able to edit the
+      content of that piece of memory outside of <code>main</code>.
+      </p>
+    </section>
+    <section class="main-section" id="A_detour_through_classes">
+      <header>
+        <h2>A detour through classes</h2>
+      </header>
+      <p>The reader likely understands enough about pointers to get by from here. If you don't
+      feel like you understand pointers very well - don't worry. Most people won't understand much
+      after reading a short document like this. The real understanding comes from working through
+      increasingly difficult practice problems after reading the reference (more on that at the end).</p>
+
+      <p>Hopefully, you understand a little bit about classes. In C++, programmers can create
+      new data types by creating classes. There's really a lot more to it than this simple
+      definition, but you won't need to understand too far beyond that definition for this
+      tutorial.</p>
+
+      <p>Let's just start building the class we're going to be using to implement the linked
+      list and explain it as we go. One note here: there are really two ways to build a class
+      in C++. One can build a class with the <code>class</code> or with the <code>struct</code>.
+      We'll be using the <code>struct</code> here because I think it would be easier for
+      someone without much exposure to the topic to understand. The two class construction
+      methods are very similar.</p>
+
+      <p>Let's get started building our struct:
+        <div class="codes"><pre><code>
+          struct node {
+            int data;
+            node * next;
+          };
+        </code></pre></div>
+      <p>Usually this short piece of code would be placed above <code>int main()</code>. All structs
+      start with <code>struct</code> followed by the name of the data structure you're creating.
+      If you're confused by the idea of creating a data structure, just remember: the created data
+      structure is just like any other. You can declare integer with <code>int data</code> and you
+      can declare the node with <code>node x</code>.
+      </p>
+
+      <p>Our <code>node</code> data structure is comprised of two data types: <code>int</code>
+      and <code>node</code>. This piece of data can be tricky to understand because one of its
+      components is a pointer to another <code>node</code>. Again, if this is confusing, don't
+      worry, just try working through some of the problems when the time comes. The real
+      enlightenment usually happens there.</p>
+    </section>
+    <section class="main-section" id="Recursion">
+      <header>
+        <h2>Recursion</h2>
+      </header>
+
+      <p>A recursive function is a function that calls itself. Recursion can be tricky and computationally
+      expensive, but it's completely necessary for certain problems in computer science. That said, if there
+      is a way to solve a problem without using recursion, like, for example, by using a loop, that method
+      should probably be used before recursion is. Let's walk through an example to see what recursion is
+      about.</p>
+
+      <p>In this example, we'll be creating a recursive function that sums all numbers from 1 to 3. This
+      could easily be achieved using a <code>for</code> loop, and probably should always be done by looping,
+      but this will be an easy problem that we can use to demonstrate recursion. As always, let's run some
+      code and walk through it together.</p>
+
+      <div class="codes"><pre><code>
+        int recurse (int sum, int count) {
+          if(count <= 3){
+            sum=recurse(sum+count, count+1);
+          }
+          return sum;
+        }
+
+        int main(){
+          int sum=recurse(0, 1);
+          cout << sum << endl;
+          return 0;
+        }
+      </code></pre></div>
+
+      <p>When you run this code in your environment, you shoulld get output of 6. In <code>main</code> we
+      initialize the function with values of 0 and 1 for the sum and the counter, respectively. Since there is no built in
+      method for stopping a recursion, we have to have the counter to stop the recursion when we've reached
+      the desired result. I think the easiest way to understand what's happening is to walk through each
+      recursion as it occurs. Let's dig in.</p>
+
+      <p>
+      1<sup>st</sup> function: sum=0, count=1; the <code>if</code> statement is tripped, values of sum=1 and count=2 are sent to <code>recurse</code>.<br>
+      2<sup>nd</sup> function: sum=1, count=2; the <code>if</code> statement is tripped, values of sum=3 and count=3 are sent to <code>recurse</code>.<br>
+      3<sup>rd</sup> function: sum=3, count=3; the <code>if</code> statement is tripped, values of sum=6 and count=4 are sent to <code>recurse</code>.<br>
+      4<sup>th</sup> function: sum=6, count=4; the <code>if</code> statement is not tripped; sum=6 is returned to function 3.<br>
+      3<sup>rd</sup> function: sum=6, count=3; the <code>if</code> statement has already been passed; sum=6 is returned to function 2.<br>
+      2<sup>nd</sup> function: sum=6, count=2; the <code>if</code> statement has already been passed; sum=6 is returned to function 1.<br>
+      1<sup>st</sup> function: sum=6, count=1; the <code>if</code> statement has already been passed; sum=6 is returned to <code>main</code>.<br>
+      </p>
+
+    </section>
+    <section class="main-section" id="Next_steps">
+      <header>
+        <h2>Next steps</h2>
+      </header>
+      <p>You should understand enough now to jump into work on linked lists.<a href="http://cslibrary.stanford.edu/105/LinkedListProblems.pdf">
+      This document from the Stanford CS department</a> has one of the best introductions to the linked list available.
+      It also has a number of challenging practice problems. I recommend reading the introduction
+      and then diving into the practice problems. Doing the practice problems is really the only
+      way to fully understand the ideas. Try doing all of them.</p>
+    </section>
+  </main>
+</body>
+</html>
