@@ -13,13 +13,13 @@ I'm on a bit of a graphics programming kick recently. I knew that ray tracing co
 
 ### Using the Xlib library  
 
-Xlib is the client library for the X Window System, the standard windowing system for many Linux distributions. There are plenty of large, bloated graphics libraries that build on top of Xlib, but I wanted to keep things simple by working directly with the library. Because Xlib is fairly "low-level" as far as graphics libraries go, searching for documentation is painful. In particular, I had trouble figuring out how to render an array of pixels &mdash a pixmap in Xlib lingo &mdash into a window. I want to document the correct way to do this.
+Xlib is the client library for the X Window System, the standard windowing system for many Linux distributions. There are plenty of large, bloated graphics libraries that build on top of Xlib, but I wanted to keep things simple by working directly with the library. Because Xlib is fairly "low-level" as far as graphics libraries go, searching for documentation is painful. In particular, I had trouble figuring out how to render an array of pixels -- a pixmap in Xlib lingo -- into a window. I want to document the correct way to do this.
 
 ### Some computer color basics  
 
-Most modern computers have what is called "True Color". In modern systems, colors are specified by a 24-bit integer split into 3 components &mdash red, green, and blue. The number of bits used to specify a color is sometimes called the color "depth". Each color channel is an 8-bit unsigned integer that ranges from 0 to 255. This allows for more than 16 million colors. There are some important, non-obvious issues that are easy to overlook when assigning colors to a pixmap inside a client program.
+Most modern computers have what is called "True Color". In modern systems, colors are specified by a 24-bit integer split into 3 components -- red, green, and blue. The number of bits used to specify a color is sometimes called the color "depth". Each color channel is an 8-bit unsigned integer that ranges from 0 to 255. This allows for more than 16 million colors. There are some important, non-obvious issues that are easy to overlook when assigning colors to a pixmap inside a client program.
 
-The first major issue is that we cannot really have a 24-bit color. For various reasons that are not clear to me, it's easier for the computer if colors are `int` &mdash i.e., 32 bits. This means that we need to pad our 24-bit color depth with a byte of 0x00 on the right. The second major issue is that, by convention, colors are specified in the order red, green, blue &mdash just think of the acronym RGB as proof of this. And the colors *are* actually in this order, but, depending on the endianness of your hardware, you might have to specify the channels backward (so, really BGR). On my Chromebook, which has an Intel processor, I have to specify the color channels backward because Intel hardware is little endian.
+The first major issue is that we cannot really have a 24-bit color. For various reasons that are not clear to me, it's easier for the computer if colors are `int` -- i.e., 32 bits. This means that we need to pad our 24-bit color depth with a byte of 0x00 on the right. The second major issue is that, by convention, colors are specified in the order red, green, blue -- just think of the acronym RGB as proof of this. And the colors *are* actually in this order, but, depending on the endianness of your hardware, you might have to specify the channels backward (so, really BGR). On my Chromebook, which has an Intel processor, I have to specify the color channels backward because Intel hardware is little endian.
 
 ### Let's see the code  
 
@@ -55,4 +55,4 @@ This next chunk of code creates the pixmap. Most of this is self-explanatory, bu
 
 >\[F\]or an RGB image you have all the red channel data followed by the green and then blue instead of the more traditional RGB triplets
 
-If you interested in seeing how the ideas here fully implemented, you can check out the `DisplayWindow` class in my [simple raytracing project](https://github.com/andrewlubrino/raytracer).
+If you are interested in seeing the ideas here fully implemented, you can check out the `DisplayWindow` class in my [simple raytracing project](https://github.com/andrewlubrino/raytracer).
